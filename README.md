@@ -130,52 +130,8 @@ Follow these steps to run both the frontend and backend services on your local m
 
 ---
 
-## 🔑 Role-Based Access Control (RBAC) Testing Flow
-
-To easily test how permissions differ between roles, you can register new accounts specifying their workspace role directly from the sign-up form:
-
-### 1️⃣ Test Admin Actions
-1. Sign up a new account selecting the **Admin** role.
-2. You will be redirected to the **Admin Dashboard**.
-3. **Create a Project** (e.g., "Software Launch").
-4. Click the project in the sidebar to load details.
-5. In the members section, search and add other team members to the project.
-6. Click **Create Task** to assign tasks to project members with a title, description, and due date.
-
-### 2️⃣ Test Member Actions
-1. Register a new user choosing the **Member** role.
-2. Log back in as the **Admin** created in Step 1, and add this newly registered Member user to your project.
-3. Log out and log in with the **Member** user account.
-4. You will be redirected to the **Member Dashboard**.
-5. You can view the projects you have been added to, and see **only the tasks assigned to you**.
-6. Try changing a task status (e.g., `In Progress` ➔ `Completed`).
-7. Observe that you are restricted from creating new projects, creating/deleting tasks, or viewing other members' tasks.
 
 ### 🚨 Overdue Task Badges
 * Any task whose due date is in the past, and its status is not `COMPLETED`, will dynamically render a red **Overdue** badge and highlight the due date in red across both the Admin and Member dashboards.
 
 ---
-
-## ☁️ Deploying to Railway
-
-### Phase 1: Database Setup
-1. Log in to [Railway.app](https://railway.app/).
-2. Create a **New Project** and select **Provision PostgreSQL**. This will set up an online Postgres database.
-
-### Phase 2: Backend Service
-1. Click **New Service** -> **GitHub Repo** and connect your repository.
-2. Under the service settings, configure:
-   * **Root Directory:** `/backend` (Railway will read the `Dockerfile` and build it).
-3. In the **Variables** tab, add:
-   * `DATABASE_URL`: Set value to link the Postgres DB: `${{Postgres.DATABASE_URL}}`
-   * `JWT_SECRET`: Add a secure, randomly generated hash string.
-4. Once deployed, copy the backend's public domain (e.g., `https://backend-production.up.railway.app`).
-
-### Phase 3: Frontend Service
-1. Click **New Service** -> **GitHub Repo** and select the same repository.
-2. In the service settings, configure:
-   * **Service Name:** `frontend`
-   * **Root Directory:** `/frontend` (Railway builds Vite static assets using npm scripts).
-3. In the **Variables** tab, add:
-   * `VITE_API_URL`: Set this to the public URL generated for your backend service.
-4. Save and let the automatic build process finish. Open your generated frontend URL to access the live app!
