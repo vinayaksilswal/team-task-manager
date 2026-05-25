@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
@@ -6,6 +7,12 @@ from app.database import get_db
 from app.models import Task, User, UserRole, Project
 from app.schemas import TaskCreate, TaskResponse, TaskUpdate
 from app.auth import get_current_user, RoleChecker
+
+def to_naive_utc(dt: datetime) -> datetime:
+    if dt.tzinfo is not None:
+        return dt.astimezone(timezone.utc).replace(tzinfo=None)
+    return dt
+
 
 router = APIRouter(prefix="", tags=["Tasks"])
 
@@ -55,7 +62,7 @@ async def create_task(
         title=task_in.title,
         description=task_in.description,
         status=task_in.status,
-        due_date=task_in.due_date,
+        due_date=to_naive_utc(task_in.due_date),
         project_id=project_id,
         assigned_to_id=task_in.assigned_to_id
     )
@@ -119,7 +126,7 @@ async def update_task(
         if task_in.description is not None:
             task.description = task_in.description
         if task_in.due_date is not None:
-            task.due_date = task_in.due_date
+            task.due_date = to_naive_utc(task_in.due_date)
         if task_in.assigned_to_id is not None:
             user_result = await db.execute(select(User).filter(User.id == task_in.assigned_to_id))
             user = user_result.scalars().first()
