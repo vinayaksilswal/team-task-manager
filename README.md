@@ -4,7 +4,7 @@ A production-ready, full-stack **Team Task Manager** web application featuring r
 
 🔗 **Live Deployments:**
 * **Frontend Client:** [https://team-task-manager.quantcai.in/](https://team-task-manager.quantcai.in/)
-* **Backend API Server:** [https://team-task-manager-production-636e.up.railway.app](https://team-task-manager-production-636e.up.railway.app) (Swagger Docs at `/docs`)
+* **Backend API Server:** [https://team-task-manager-production-636e.up.railway.app](https://team-task-manager-production-636e.up.railway.app/docs) (Swagger Docs at `/docs`)
 
 ---
 
