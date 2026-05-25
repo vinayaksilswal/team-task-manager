@@ -108,7 +108,6 @@ Follow these steps to run both the frontend and backend services on your local m
    * The backend API server is now running at `http://localhost:8000`.
    * Open **`http://localhost:8000/docs`** to explore and test the interactive OpenAPI/Swagger documentation.
 
----
 
 ### 💻 Frontend Setup
 
