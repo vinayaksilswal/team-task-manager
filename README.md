@@ -2,6 +2,10 @@
 
 A production-ready, full-stack **Team Task Manager** web application featuring robust **Role-Based Access Control (RBAC)**, interactive dashboards, dynamic project management, and real-time task assignments.
 
+🔗 **Live Deployments:**
+* **Frontend Client:** [https://team-task-manager.quantcai.in/](https://team-task-manager.quantcai.in/)
+* **Backend API Server:** [https://team-task-manager-production-636e.up.railway.app](https://team-task-manager-production-636e.up.railway.app) (Swagger Docs at `/docs`)
+
 ---
 
 ## 🏗️ System Architecture
